@@ -23,17 +23,29 @@ if($conn ->connect_error){
 
 //$sql = "Delete from tbl_user where id='5'" ;
 
-$sql = "select name , skill,email from tbl_user order by id";
+//$sql = "select name , skill,email from tbl_user order by id";
 
 //$result = $conn->query($sql) ;
 
+// how to use bind_param()
+$sql = "insert into tbl_user(name , email , skill)values(?,?,?)";
+
+
+
 $stmt = $conn->prepare($sql) ;
+$stmt->bind_param("sss", $name , $email , $skill);
+$name = "ashiqur Rahman shuvo";
+$email = "ahsiq@gmail.com";
+$skill = "Computer programmer";
 $stmt->execute() ;
+
+
+/*
 $stmt->bind_result($nam , $rubel,$email) ;
 while($stmt->fetch()){
 	echo "The user name = ".$nam." and skills is = ".$rubel." and email is = ".$email."<br>";
 }
-
+*/
 
 /*
 while($data = $result->fetch_object()){
